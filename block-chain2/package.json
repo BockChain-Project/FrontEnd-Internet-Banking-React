@@ -1,0 +1,51 @@
+{
+  "name": "block-chain",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.1",
+    "classnames": "^2.2.5",
+    "create-react-app": "^1.5.2",
+    "formik": "^0.11.11",
+    "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
+    "prop-types": "^15.6.1",
+    "pubsub-js": "^1.7.0",
+    "react": "^16.3.2",
+    "react-datepicker": "^1.5.0",
+    "react-dom": "^16.3.2",
+    "react-notifications": "^1.4.3",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "react-select": "^1.2.1",
+    "reactstrap": "^6.0.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.2.0",
+    "yup": "^0.25.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-flowtype": "^2.46.3",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.8.2",
+    "flow-bin": "^0.72.0"
+  }
+}
