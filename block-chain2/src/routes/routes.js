@@ -24,22 +24,17 @@ const routes = [
     main: () => <ClientManagerContainer />
   },
   {
-    path: "",
-    exact: false,
-    main: () => <ErrorPage />
-  },
-  {
-    path: "history",
+    path: "/history/",
     exact: false,
     main: () => <History />
   },
   {
-    path: "/contact",
+    path: "/contact/",
     exact: false,
     main: () => <ContactContainer />
   },
   {
-    path: "/transfer",
+    path: "/transfers/",
     exact: false,
     main: () => <Transfer />
   },
@@ -47,6 +42,11 @@ const routes = [
     path: "/admin-login",
     exact: false,
     main: () => <UserManagerContainer />
+  },
+  {
+    path: "",
+    exact: false,
+    main: () => <ErrorPage />
   }
 
 ];

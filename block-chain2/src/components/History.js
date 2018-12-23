@@ -5,13 +5,7 @@
 // @flow
 import React, { Component } from "react";
 
-type Props = {
-
-};
-type State = {
-    showError: boolean
-};
-class History extends Component<Props, State> {
+class History extends Component {
     constructor(props: any) {
         super(props);
         this.state = {
