@@ -41,7 +41,7 @@ class App extends Component {
         <HeaderContainer />
         <Container fluid className="sbi-content">
           <Row>
-            <Col md={{ size: 11, offset: 1 }}>
+            <Col md={{ size: 12, offset: 1 }}>
               <Switch>
                 <Route path="/login" component={LoginContainer} />
                 {this.showRoutes(routes)}
@@ -49,10 +49,8 @@ class App extends Component {
             </Col>
           </Row>
         </Container>
-        <footer className="sbi-footer">
-          <Container>
-            <Footer />
-          </Container>
+        <footer>
+          <Footer />
         </footer>
       </div>
     );
