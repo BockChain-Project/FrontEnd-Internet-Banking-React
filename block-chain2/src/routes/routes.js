@@ -14,7 +14,7 @@ const routes = [
   {
     path: "/",
     exact: true,
-    main: () => <HomeContainer />
+    main: () => <ClientManagerContainer />
   },
   {
     path: "",

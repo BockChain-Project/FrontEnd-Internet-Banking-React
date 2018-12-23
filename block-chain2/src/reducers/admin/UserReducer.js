@@ -1,4 +1,3 @@
-/* eslint-disable no-var */
 import * as ACTIONTYPES from "../../actions/admin/UserActionsType";
 import api from "../../api/Api";
 import * as BASE_URL from "../../configs/AppConfig";

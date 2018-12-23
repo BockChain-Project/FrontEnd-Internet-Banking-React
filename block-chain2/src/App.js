@@ -1,5 +1,5 @@
-/* eslint-disable arrow-body-style */
 /* eslint-disable no-var */
+/* eslint-disable arrow-body-style */
 /* eslint-disable consistent-return */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prefer-stateless-function */
@@ -23,7 +23,7 @@ class App extends Component {
     if (routes.length > 0) {
       result = routesList.map((route, index) => {
         return (
-          <PrivateRoute
+          <Route
             key={index}
             path={route.path}
             exact={route.exact}
