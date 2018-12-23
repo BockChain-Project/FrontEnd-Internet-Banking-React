@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 // @flow
 import React, { Component } from "react";
 import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
@@ -50,7 +51,7 @@ class NavItemCollapse extends Component<Props, State> {
   };
 
   render = () => {
-    const { open } = this.state; 
+    const { open } = this.state;
     // eslint-disable-next-line camelcase
     const { page, children_pages, itemId } = this.props;
 

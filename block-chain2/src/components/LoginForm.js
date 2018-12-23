@@ -1,3 +1,7 @@
+/* eslint-disable react/jsx-closing-tag-location */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/label-has-for */
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import React, { Component } from "react";
 import classnames from "classnames";
 import {
@@ -45,7 +49,7 @@ type Props = {
 };
 
 class LoginForm extends Component<Props> {
-  componentDidMount = () => {};
+  componentDidMount = () => { };
 
   render() {
     const {
@@ -63,6 +67,7 @@ class LoginForm extends Component<Props> {
     return (
       <div className="pt-11em">
         {isLoading && <Loading />}
+        {/** Phuong remove 
         <Row>
           <Col md={{ size: 4, offset: 3 }}>
             <Card className="form-signin">
@@ -122,6 +127,41 @@ class LoginForm extends Component<Props> {
             </Card>
           </Col>
         </Row>
+         */}
+
+        {/** phuong add start */}
+        {/* create a new account */}
+        <div className="col-md-6 col-sm-6 create-new-account">
+          <h4 className="checkout-subtitle">Sign in</h4>
+          <p className="text title-tag-line">Create your new account.</p>
+
+          <form className="register-form outer-top-xs" role="form">
+            <div className="form-group">
+              <label className="info-title" htmlFor="exampleInputEmail2">Email Address <span>*</span></label>
+              <input type="email" className="form-control unicase-form-control text-input" id="exampleInputEmail2" />
+            </div>
+            <div className="form-group">
+              <label className="info-title" htmlFor="exampleInputEmail1">Name <span>*</span></label>
+              <input type="email" className="form-control unicase-form-control text-input" id="exampleInputEmail1" />
+            </div>
+
+            <button type="submit" className="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
+            &nbsp;&nbsp;&nbsp;
+                        <button className="btn-upper btn btn-default checkout-page-button">
+              <a href="" className="facebook-sign-in"><i className="fa fa-google" /> Sign In with Google</a>
+            </button>
+            <div className="radio outer-xs">
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios2" defaultValue="option2" />Remember me!
+                              </label>
+              <a href="" className="forgot-password pull-right">Forgot your Password?</a>
+            </div>
+          </form>
+        </div>
+        {/* create a new account */}
+
+        {/** phuong add end */}
+
       </div>
     );
   }
