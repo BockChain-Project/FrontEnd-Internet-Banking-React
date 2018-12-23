@@ -11,7 +11,7 @@ type Props = {
 type State = {
     showError: boolean
 };
-class Error extends Component<Props, State> {
+class Contact extends Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -151,4 +151,4 @@ class Error extends Component<Props, State> {
     }
 }
 
-export default Error;
+export default Contact;

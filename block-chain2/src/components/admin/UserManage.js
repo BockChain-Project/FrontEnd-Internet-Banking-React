@@ -1,32 +1,64 @@
-/* eslint-disable no-useless-constructor */
-/* eslint-disable react/no-unknown-property */
-/* eslint-disable react/void-dom-elements-no-children */
-/* eslint-disable react/prefer-stateless-function */
+/* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable array-callback-return */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable no-else-return */
-/* eslint-disable camelcase */
-/* eslint-disable no-var */
-/* eslint-disable vars-on-top */
-/* eslint-disable arrow-body-style */
-/* eslint-disable consistent-return */
-/* eslint-disable no-empty */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-unused-prop-types */
+/* eslint-disable spaced-comment */
+/* eslint-disable jsx-a11y/no-redundant-roles */
 // @flow
 import React, { Component } from "react";
-import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 
-type Props = {};
+type Props = {
 
-type State = {};
-
+};
+type State = {
+  showError: boolean
+};
 class UserManage extends Component<Props, State> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+
   render() {
-    return <div style={{ marginLeft: 15 }} />;
+    return (
+      <div>
+        {/* create a new account */}
+        <div className="col-md-6 col-sm-6 create-new-account">
+          <h4 className="checkout-subtitle">Create a new account</h4>
+          <p className="text title-tag-line">Create your new account.</p>
+          <form className="register-form outer-top-xs" role="form">
+            <div className="form-group">
+              <label className="info-title" htmlFor="exampleInputEmail2">Email Address <span>*</span></label>
+              <input type="email" className="form-control unicase-form-control text-input" id="exampleInputEmail2" />
+            </div>
+            <div className="form-group">
+              <label className="info-title" htmlFor="exampleInputEmail1">Name <span>*</span></label>
+              <input type="email" className="form-control unicase-form-control text-input" id="exampleInputEmail1" />
+            </div>
+            <div>
+              <div className="form-group">
+                <label className="info-title" htmlFor="exampleInputEmail1">Phone Number <span>*</span></label>
+                <input type="email" className="form-control unicase-form-control text-input" id="exampleInputEmail1" />
+              </div>
+              <div className="form-group">
+                <label className="info-title" htmlFor="exampleInputEmail1">Password <span>*</span></label>
+                <input type="email" className="form-control unicase-form-control text-input" id="exampleInputEmail1" />
+              </div>
+              <div className="form-group">
+                <label className="info-title" htmlFor="exampleInputEmail1">Confirm Password <span>*</span></label>
+                <input type="email" className="form-control unicase-form-control text-input" id="exampleInputEmail1" />
+              </div>
+            </div>
+
+
+            <button type="submit" className="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
+          </form>
+        </div>
+        {/* create a new account */}
+      </div>
+    );
   }
 }
 
-export default withRouter(UserManage);
+export default UserManage;

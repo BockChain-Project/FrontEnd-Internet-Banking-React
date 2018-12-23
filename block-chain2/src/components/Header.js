@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable spaced-comment */
 
@@ -90,6 +91,43 @@ class Header extends Component<Props, State> {
       //   </a>
       // </div>
       <div>
+        {/* ============================================== HEADER ============================================== */}
+        <header className="header-style-1">
+          {/* ============================================== TOP MENU ============================================== */}
+          <div className="top-bar animate-dropdown">
+            <div className="container">
+              <div className="header-top-inner">
+                <div className="cnt-account">
+                  <ul className="list-unstyled">
+                    <li className="myaccount"><Link to="login"><span>Log in</span></Link></li>
+                    <li className="wishlist"><Link to="history"><span>History</span></Link></li>
+                    <li className="header_cart hidden-xs"><Link to="transfers"><span>Transfer</span></Link></li>
+                    <li className="check"><Link to=""><span>Log out</span></Link></li>
+                  </ul>
+                </div>
+                {/* /.cnt-account */}
+                <div className="cnt-block">
+                  <ul className="list-unstyled list-inline">
+                    <li className="dropdown dropdown-small"> <Link to="" className="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span className="value">USD </span><b className="caret" /></Link>
+                      <ul className="dropdown-menu">
+                        <li><Link to="error">USD</Link></li>
+                        <li><Link to="error">VND</Link></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  {/* /.list-unstyled */}
+                </div>
+                {/* /.cnt-cart */}
+                <div className="clearfix" />
+              </div>
+              {/* /.header-top-inner */}
+            </div>
+            {/* /.container */}
+          </div>
+          {/* /.header-top */}
+          {/* ============================================== TOP MENU : END ============================================== */}
+        </header>
+
         <div className="main-header">
           <div className="container">
             <div className="row">
