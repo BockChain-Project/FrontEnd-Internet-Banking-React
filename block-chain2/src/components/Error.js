@@ -2,17 +2,8 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 // @flow
 import React, { Component } from "react";
-import { Alert } from "reactstrap";
 
-type Props = {
-  isFailure: boolean,
-  error: Object
-};
-type State = {
-  showError: boolean
-};
-
-class Error extends Component<Props, State> {
+class Error extends Component {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -26,8 +17,6 @@ class Error extends Component<Props, State> {
   };
 
   render() {
-    const { isFailure, error } = this.props;
-    const errorStr = error.error ? error.error : "";
     return (
       <div>
         <div className="body-content outer-top-bd">
@@ -37,9 +26,6 @@ class Error extends Component<Props, State> {
                 <div className="col-md-12 x-text text-center">
                   <h1>404</h1>
                   <p>We are sorry, the page you have requested is not available. </p>
-                  <Alert color="danger" isOpen={isFailure}>
-                    {`${errorStr} ${error.message}`}
-                  </Alert>
                   <form role="form" className="outer-top-vs outer-bottom-xs">
                     <input placeholder="Search" autoComplete="off" />
                     <button className="  btn-default le-button">Go</button>

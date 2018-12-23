@@ -21,12 +21,12 @@ type State = {
   isSetRedirectFrom: boolean
 };
 
-class UserManager extends Component<Props, State> {
+class UserManagerContainer extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {};
   }
-  componentWillMount = props => {};
+  componentWillMount = props => { };
 
   render() {
     const { users, userActions } = this.props;
@@ -57,4 +57,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserManager);
+)(UserManagerContainer);
