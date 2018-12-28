@@ -29,7 +29,7 @@ class Transfer extends Component<Props, State> {
                             <div className="breadcrumb-inner">
                                 <ul className="list-inline list-unstyled">
                                     <li><a href="#">Home</a></li>
-                                    <li className="active">Checkout</li>
+                                    <li className="active">Checkout - Internal transfer (same bank)</li>
                                 </ul>
                             </div>{/* /.breadcrumb-inner */}
                         </div>{/* /.container */}
@@ -51,7 +51,7 @@ class Transfer extends Component<Props, State> {
                                                 <div className="panel-heading">
                                                     <h4 className="unicase-checkout-title">
                                                         <a data-toggle="collapse" className="collapsed" data-parent="#accordion" href="#collapseOne">
-                                                            <span>1</span>Shipping Method
+                                                            <span>1</span>Select the source account
                                                         </a>
                                                     </h4>
                                                 </div>
@@ -116,7 +116,7 @@ class Transfer extends Component<Props, State> {
                                                 <div className="panel-heading">
                                                     <h4 className="unicase-checkout-title">
                                                         <a data-toggle="collapse" className="collapsed" data-parent="#accordion" href="#collapseTwo">
-                                                            <span>2</span>Shipping Method
+                                                            <span>2</span>Receiver's information
                                                         </a>
                                                     </h4>
                                                 </div>
@@ -132,7 +132,7 @@ class Transfer extends Component<Props, State> {
                                                 <div className="panel-heading">
                                                     <h4 className="unicase-checkout-title">
                                                         <a data-toggle="collapse" className="collapsed" data-parent="#accordion" href="#collapseThree">
-                                                            <span>3</span>Shipping Method
+                                                            <span>3</span>Enter transfer amount & transfer content
                                                         </a>
                                                     </h4>
                                                 </div>
@@ -148,7 +148,7 @@ class Transfer extends Component<Props, State> {
                                                 <div className="panel-heading">
                                                     <h4 className="unicase-checkout-title">
                                                         <a data-toggle="collapse" className="collapsed" data-parent="#accordion" href="#collapseFour">
-                                                            <span>4</span>Shipping Method
+                                                            <span>4</span>Choose fee payment method (paid recipient / paid sender)
                                                         </a>
                                                     </h4>
                                                 </div>
@@ -164,7 +164,7 @@ class Transfer extends Component<Props, State> {
                                                 <div className="panel-heading">
                                                     <h4 className="unicase-checkout-title">
                                                         <a data-toggle="collapse" className="collapsed" data-parent="#accordion" href="#collapseFive">
-                                                            <span>5</span>Shipping Method
+                                                            <span>5</span>TRANSFERS
                                                         </a>
                                                     </h4>
                                                 </div>
