@@ -11,7 +11,8 @@ import * as ClientActions from "./../../actions/client/ClientActions";
 
 type Props = {
   clients: Array,
-  clientActions: Object
+  clientActions: Object,
+  accounts: Object
 };
 
 type State = {
@@ -19,14 +20,14 @@ type State = {
 };
 
 class ClientManagerContainer extends Component<Props, State> {
-  componentWillMount = props => {};
+  componentWillMount = props => { };
 
   render() {
-    const { clients, clientActions } = this.props;
+    const { clients, clientActions, accounts } = this.props;
     return (
       <Row>
         <Col>
-          <ClientManage clients={clients} clientActions={clientActions} />
+          <ClientManage clients={clients} clientActions={clientActions} accounts={accounts} />
         </Col>
       </Row>
     );
@@ -34,9 +35,9 @@ class ClientManagerContainer extends Component<Props, State> {
 }
 
 const mapStateToProps = state => {
-  const { clients } = state.clientReducer;
+  const { clients, accounts } = state.clientReducer;
   return {
-    clients
+    clients, accounts
   };
 };
 
