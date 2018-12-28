@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable prefer-template */
 /* eslint-disable react/self-closing-comp */
@@ -9,10 +10,13 @@ import { Row, Col } from "reactstrap";
 import ClientManage from "../../components/client/ClientManage";
 import * as ClientActions from "./../../actions/client/ClientActions";
 
+import { actFetchProductsRequest } from './../../actions/client/account';
+
 type Props = {
   clients: Array,
   clientActions: Object,
-  accounts: Object
+  accounts: Object,
+  fetchAllProducts: PropTypes.func
 };
 
 type State = {
@@ -21,7 +25,10 @@ type State = {
 
 class ClientManagerContainer extends Component<Props, State> {
   componentWillMount = props => { };
-
+  componentDidMount() {
+    // console.log("componentDidMount");
+    this.props.fetchAllProducts();
+  }
   render() {
     const { clients, clientActions, accounts } = this.props;
     return (
@@ -43,7 +50,11 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    clientActions: bindActionCreators(ClientActions, dispatch)
+    clientActions: bindActionCreators(ClientActions, dispatch),
+    fetchAllProducts: () => {
+      // console.log("actFetchProductsRequest");
+      dispatch(actFetchProductsRequest());
+    }
   };
 }
 

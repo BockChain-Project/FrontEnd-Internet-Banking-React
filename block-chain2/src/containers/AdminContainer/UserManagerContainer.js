@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable prefer-template */
 /* eslint-disable react/self-closing-comp */
@@ -11,6 +12,8 @@ import UserManage from "../../components/admin/UserManage";
 import * as authenticationAction from "../../actions/AuthenticationAction";
 import * as headerActions from "../../actions/header/HeaderActions";
 import * as UserActions from "./../../actions/admin/UserActions";
+
+
 
 type Props = {
   users: Array,
@@ -27,6 +30,11 @@ class UserManagerContainer extends Component<Props, State> {
     this.state = {};
   }
   componentWillMount = props => { };
+
+  componentDidMount() {
+    console.log("componentDidMount");
+
+  }
 
   render() {
     const { users, userActions } = this.props;

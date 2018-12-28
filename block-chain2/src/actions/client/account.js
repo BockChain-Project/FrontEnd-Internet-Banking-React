@@ -33,10 +33,10 @@ export const actFetchProductsRequest = () => {
     };
 }
 
-export const actFetchProducts = (products) => {
+export const actFetchProducts = (accounts) => {
     return {
         type: Types.FETCH_PRODUCTS,
-        message
+        accounts
     }
 }
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-var */
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable jsx-a11y/label-has-for */
@@ -21,6 +22,8 @@ class ClientManage extends Component<Props, State> {
 
   showAccounts = (accounts) => {
     var result = null;
+    console.log("showAccounts", accounts);
+
     if (accounts.length > 0) {
       result = accounts.map((account, key) => {
         return <AccountItem
@@ -35,6 +38,8 @@ class ClientManage extends Component<Props, State> {
 
   render() {
     var { accounts } = this.props;
+    console.log("showAccounts 1", accounts);
+
     return (
       <div>
         <div className="breadcrumb">
