@@ -35,7 +35,7 @@ export const actFetchProductsRequest = () => {
 
 export const actFetchProducts = (accounts) => {
     return {
-        type: Types.FETCH_PRODUCTS,
+        type: Types.FETCH_ACCOUNTS,
         accounts
     }
 }

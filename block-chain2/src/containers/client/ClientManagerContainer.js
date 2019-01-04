@@ -16,7 +16,7 @@ type Props = {
   clients: Array,
   clientActions: Object,
   accounts: Object,
-  fetchAllProducts: PropTypes.func
+  fetchAllAccounts: PropTypes.func
 };
 
 type State = {
@@ -27,7 +27,7 @@ class ClientManagerContainer extends Component<Props, State> {
   componentWillMount = props => { };
   componentDidMount() {
     // console.log("componentDidMount");
-    this.props.fetchAllProducts();
+    this.props.fetchAllAccounts();
   }
   render() {
     const { clients, clientActions, accounts } = this.props;
@@ -51,7 +51,7 @@ const mapStateToProps = state => {
 function mapDispatchToProps(dispatch) {
   return {
     clientActions: bindActionCreators(ClientActions, dispatch),
-    fetchAllProducts: () => {
+    fetchAllAccounts: () => {
       // console.log("actFetchProductsRequest");
       dispatch(actFetchProductsRequest());
     }

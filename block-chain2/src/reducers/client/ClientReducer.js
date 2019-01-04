@@ -29,7 +29,7 @@ const initialState = {
 
 const ClientReducer = (state = initialState, action) => {
   switch (action.type) {
-    case Types.FETCH_PRODUCTS:
+    case Types.FETCH_ACCOUNTS:
       state.accounts = action.accounts;
       console.log("action: ", action);
       console.log("state: ", state);
