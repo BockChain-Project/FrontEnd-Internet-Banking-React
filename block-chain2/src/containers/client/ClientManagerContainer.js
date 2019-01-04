@@ -10,7 +10,7 @@ import { Row, Col } from "reactstrap";
 import ClientManage from "../../components/client/ClientManage";
 import * as ClientActions from "./../../actions/client/ClientActions";
 
-import { actFetchProductsRequest } from './../../actions/client/account';
+import { actFetchAccountsRequest } from './../../actions/client/account';
 
 type Props = {
   clients: Array,
@@ -52,8 +52,7 @@ function mapDispatchToProps(dispatch) {
   return {
     clientActions: bindActionCreators(ClientActions, dispatch),
     fetchAllAccounts: () => {
-      // console.log("actFetchProductsRequest");
-      dispatch(actFetchProductsRequest());
+      dispatch(actFetchAccountsRequest());
     }
   };
 }

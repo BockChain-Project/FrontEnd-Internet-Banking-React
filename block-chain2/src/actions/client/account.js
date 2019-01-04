@@ -4,7 +4,7 @@
 import * as Types from './ClientActionType';
 import callApi from '../../utils/apiCaller';
 
-export const actFetchProductsRequest = () => {
+export const actFetchAccountsRequest = () => {
     return dispatch => {
         // return callApi('products', 'GET', null).then(res => {
         //     dispatch(actFetchProducts(res.data));
