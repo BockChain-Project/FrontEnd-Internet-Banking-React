@@ -68,18 +68,6 @@ class Header extends Component<Props, State> {
         }
 
         return (
-            // <div>
-            //   <Navbar className="shadow sbi-header">
-            //     <Nav navbar className="ml-auto">
-            //       {user}
-            //     </Nav>
-            //   </Navbar>
-            //   <a href="/">
-            //     <div className="col-md-2 brandName">
-            //       <div className="col-md-2 brandName">Home Page</div>
-            //     </div>
-            //   </a>
-            // </div>
             <div>
                 {/* ============================================== HEADER ============================================== */}
                 <header className="header-style-1">
@@ -90,9 +78,11 @@ class Header extends Component<Props, State> {
                                 <div className="cnt-account">
                                     <ul className="list-unstyled">
                                         <li className="myaccount">
-                                            <Link to="login">
-                                                <span>Log in</span>
-                                            </Link>
+                                            {!isAuthenticated && (
+                                                <Link to="login">
+                                                    <span>Log in</span>
+                                                </Link>
+                                            )}
                                         </li>
                                         <li className="wishlist">
                                             <Link to="history">
@@ -100,14 +90,16 @@ class Header extends Component<Props, State> {
                                             </Link>
                                         </li>
                                         <li className="header_cart hidden-xs">
-                                            <Link to="transfers">
+                                            <Link to="/">
                                                 <span>Transfer</span>
                                             </Link>
                                         </li>
                                         <li className="check">
-                                            <Link to="">
-                                                <span>Log out</span>
-                                            </Link>
+                                            {isAuthenticated && (
+                                                <Link to="/logout">
+                                                    <span>Log out</span>
+                                                </Link>
+                                            )}
                                         </li>
                                     </ul>
                                 </div>
@@ -116,7 +108,7 @@ class Header extends Component<Props, State> {
                                     <ul className="list-unstyled list-inline">
                                         <li className="dropdown dropdown-small">
                                             {" "}
-                                            <Link to="" className="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+                                            {/* <Link to="" className="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
                                                 <span className="value">USD </span>
                                                 <b className="caret" />
                                             </Link>
@@ -127,7 +119,7 @@ class Header extends Component<Props, State> {
                                                 <li>
                                                     <Link to="error">VND</Link>
                                                 </li>
-                                            </ul>
+                                            </ul> */}
                                         </li>
                                     </ul>
                                     {/* /.list-unstyled */}
@@ -165,28 +157,7 @@ class Header extends Component<Props, State> {
                                 <div>
                                     <h2 style={{ fontFamily: '"Pacifico", cursive', fontSize: "60px" }}>Spa internet banking</h2>
                                 </div>
-                                <div className="search-area">
-                                    {/**
-                                 <form>
-                                        <div className="control-group">
-                                            <ul className="categories-filter animate-dropdown">
-                                                <li className="dropdown"> <a className="dropdown-toggle" data-toggle="dropdown" href="category.html">Categories
-                    <b className="caret" /></a>
-                                                    <ul className="dropdown-menu" role="menu">
-                                                        <li className="menu-header">Computer</li>
-                                                        <li role="presentation"><a role="menuitem" tabIndex={-1} href="category.html">- Clothing</a></li>
-                                                        <li role="presentation"><a role="menuitem" tabIndex={-1} href="category.html">- Electronics</a></li>
-                                                        <li role="presentation"><a role="menuitem" tabIndex={-1} href="category.html">- Shoes</a></li>
-                                                        <li role="presentation"><a role="menuitem" tabIndex={-1} href="category.html">- Watches</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                            <input className="search-field" placeholder="Search here..." />
-                                            <a className="search-button" href="" />
-                                        </div>
-                                    </form>
-                                */}
-                                </div>
+                                <div className="search-area" />
                                 {/* /.search-area */}
                                 {/* ============================================================= SEARCH AREA : END ============================================================= */}
                             </div>
@@ -194,28 +165,25 @@ class Header extends Component<Props, State> {
                             <div className="col-lg-2 col-md-3 col-sm-4 col-xs-12 animate-dropdown top-cart-row">
                                 {/* ============================================================= SHOPPING CART DROPDOWN ============================================================= */}
                                 <div className="dropdown dropdown-cart">
-                                    {" "}
-                                    <Link to="login" className="dropdown-toggle lnk-cart" data-toggle="dropdown">
+                                    {/* <Link to="login" className="dropdown-toggle lnk-cart" data-toggle="dropdown">
                                         <div className="items-cart-inner">
                                             <div className="basket">
                                                 <div className="basket-item-count">
                                                     <span className="count">2</span>
                                                 </div>
                                                 <div className="total-price-basket">
-                                                    {" "}
                                                     <span className="lbl">Detail Account</span>
                                                     <span className="value">1.000.000VDN</span>
                                                 </div>
                                             </div>
                                         </div>
-                                    </Link>
-                                    <ul className="dropdown-menu">
+                                    </Link> */}
+                                    {/* <ul className="dropdown-menu">
                                         <li>
                                             <div className="cart-item product-summary">
                                                 <div className="row">
                                                     <div className="col-xs-4">
                                                         <div className="image">
-                                                            {" "}
                                                             <Link to="login">
                                                                 <img src="assets/images/products/p4.jpg" alt="no img" />
                                                             </Link>
@@ -235,7 +203,6 @@ class Header extends Component<Props, State> {
                                                     </div>
                                                 </div>
                                             </div>
-                                            {/* /.cart-item */}
                                             <div className="clearfix" />
                                             <hr />
                                             <div className="clearfix cart-total">
@@ -249,9 +216,8 @@ class Header extends Component<Props, State> {
                                                     Transfer
                                                 </Link>
                                             </div>
-                                            {/*/.cart-total */}
                                         </li>
-                                    </ul>
+                                    </ul> */}
                                     {/* /.dropdown-menu*/}
                                 </div>
                                 {/* /.dropdown-cart */}

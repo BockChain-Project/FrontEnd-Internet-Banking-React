@@ -93,21 +93,7 @@ class ClientManage extends Component<Props, State> {
                                         <th className="text-center"> Actions </th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    {/**
-                 <tr className="edit" id="detail">
-                    <td id="no" className="text-center"> this.props.id</td>
-                    <td id="name" className="text-center"> this.props.name </td>
-                    <td id="mobile" className="text-center"> this.props.number </td>
-                  </tr>
-                  <tr className="edit" id="detail">
-                    <td id="no" className="text-center"> this.props.id</td>
-                    <td id="name" className="text-center"> this.props.name </td>
-                    <td id="mobile" className="text-center"> this.props.number </td>
-                  </tr>
-                */}
-                                    {this.showAccounts(accounts)}
-                                </tbody>
+                                <tbody>{this.showAccounts(accounts)}</tbody>
                             </table>
                         </div>
                         <div className="panel-footer">

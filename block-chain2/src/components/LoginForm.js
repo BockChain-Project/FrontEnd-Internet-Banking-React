@@ -1,7 +1,4 @@
-/* eslint-disable react/jsx-closing-tag-location */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable jsx-a11y/no-redundant-roles */
+import ReCAPTCHA from "react-recaptcha";
 import React, { Component } from "react";
 import classnames from "classnames";
 import {
@@ -47,9 +44,29 @@ type Props = {
     isFailure: boolean
 };
 
+type State = {
+    isVerified: boolean
+};
 class LoginForm extends Component<Props> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            isVerified: false
+        };
+    }
     componentDidMount = () => {};
 
+    recapchaLoaded = () => {
+        console.log("reCapcha load successfully");
+    };
+
+    verifyCallback = response => {
+        if (response) {
+            this.setState({
+                isVerified: true
+            });
+        }
+    };
     render() {
         const { isLoading, isSubmitting, handleSubmit, handleChange, handleBlur, handler, errorInfo, isFailure } = this.props;
         const initValues = {
@@ -69,12 +86,15 @@ class LoginForm extends Component<Props> {
                         // validationSchema={SignupSchema}
                         onSubmit={(values, actions) => {
                             setTimeout(() => {
-                                handler(values.account, values.password);
+                                const { isVerified } = this.state;
+                                if (!isVerified) {
+                                    alert("Please verify that you are a human");
+                                } else handler(values.account, values.password);
                                 actions.setSubmitting(false);
                             }, 100);
                         }}
                         render={props => (
-                            <form className="register-form outer-top-xs" role="form" onSubmit={props.handleSubmit}>
+                            <form className="register-form outer-top-xs" onSubmit={props.handleSubmit}>
                                 <div className="form-group">
                                     <Label className="info-title" htmlFor="account">
                                         Username <span>*</span>
@@ -103,16 +123,22 @@ class LoginForm extends Component<Props> {
                                         name="password"
                                     />
                                 </div>
+                                <ReCAPTCHA
+                                    sitekey="6LekI4cUAAAAAFNCHlv8L4931rELEkqZFmdwWUmQ"
+                                    onloadCallback={this.recapchaLoaded}
+                                    verifyCallback={this.verifyCallback}
+                                    locale="en"
+                                />
                                 <button type="submit" className="btn-upper btn btn-primary checkout-page-button">
                                     Sign In
                                 </button>
                                 &nbsp;&nbsp;&nbsp;
-                                <button className="btn-upper btn btn-default checkout-page-button">
-                                    <a href="" className="facebook-sign-in">
+                                {/* <button className="btn-upper btn btn-default checkout-page-button">
+                                    <a href="/" className="facebook-sign-in">
                                         <i className="fa fa-google" /> Sign In with Google
                                     </a>
-                                </button>
-                                <div className="radio outer-xs">
+                                </button> */}
+                                {/* <div className="radio outer-xs">
                                     <label>
                                         <input type="radio" name="optionsRadios" id="optionsRadios2" defaultValue="option2" />
                                         Remember me!
@@ -120,7 +146,7 @@ class LoginForm extends Component<Props> {
                                     <a href="" className="forgot-password pull-right">
                                         Forgot your Password?
                                     </a>
-                                </div>
+                                </div> */}
                             </form>
                         )}
                     />
