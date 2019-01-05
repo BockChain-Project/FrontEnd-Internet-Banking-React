@@ -1,17 +1,14 @@
 // @flow
+import jwtDecode from "jwt-decode";
 import api from "./Api";
 import StorageService from "../services/StorageService";
+import { API_BASE_URL } from "./../configs/AppConfig";
 
 class TokenApi {
-  static postVerifyToken() {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        // Authorization: 
-      }
-    };
-    return api.post(`sbiapi/jwttoken/verify`, config);
-  }
+    static postVerifyToken() {
+        const { uid } = jwtDecode(StorageService.getToken()).user;
+        return api.get(`${API_BASE_URL}/users/${uid}`);
+    }
 }
 
 export default TokenApi;

@@ -1,28 +1,34 @@
-/* eslint-disable no-var */
-/* eslint-disable prefer-const */
-/* eslint-disable prefer-destructuring */
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable react/prefer-stateless-function */
-/* eslint-disableed-prop-types */
 // @flow
 import React, { Component } from "react";
 import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
-type Props = {};
+type Props = {
+    account: Array<any>
+};
 
 type State = {};
 
 class AccountItem extends Component<Props, State> {
+    componentWillMount = () => {};
+
     render() {
-        var { account } = this.props;
+        const { account } = this.props;
         return (
             <tr className="edit" id="detail">
-                <td id="no" className="text-center"> {account.id}</td>
-                <td id="name" className="text-center"> {account.name} </td>
-                <td id="balance" className="text-center"> {account.balance} </td>
+                <td id="name" className="text-center">
+                    {" "}
+                    {account.account_number}{" "}
+                </td>
+                <td id="balance" className="text-center">
+                    {" "}
+                    {account.balance}{" "}
+                </td>
+                <td className="text-center">
+                    <button className="btn btn-success">Transfer</button>&#160;&#160;
+                    <button className="btn btn-success">History Transfer</button>&#160;&#160;
+                    <button className="btn btn-success">Close Account</button>&#160;&#160;
+                </td>
             </tr>
         );
     }

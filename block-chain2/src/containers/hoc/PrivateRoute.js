@@ -15,44 +15,42 @@ import StorageService from "../../services/StorageService";
  * If not admin but required - throws an error!
  */
 const PrivateRoute = (props: Object) => {
-  const { isAuthenticated, actions, isFirstLoad } = props;
+    const { isAuthenticated, actions, isFirstLoad } = props;
 
-  if (isFirstLoad) {
-    actions.verifyToken();
-    return "";
-  }
+    if (isFirstLoad) {
+        actions.verifyToken();
+        return "";
+    }
 
-  if (isAuthenticated) {
-    return <Route {...props} />;
-  }
+    if (isAuthenticated) {
+        return <Route {...props} />;
+    }
 
-  return (
-    <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
-  );
+    return <Redirect to={{ pathname: "/login", state: { from: props.location } }} />;
 };
 
 PrivateRoute.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-  isFirstLoad: PropTypes.bool.isRequired,
-  actions: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired
+    isAuthenticated: PropTypes.bool.isRequired,
+    isFirstLoad: PropTypes.bool.isRequired,
+    actions: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {
-  const { isAuthenticated, isFirstLoad } = state.authentication;
-  return {
-    isAuthenticated,
-    isFirstLoad
-  };
+    const { isAuthenticated, isFirstLoad } = state.authentication;
+    return {
+        isAuthenticated,
+        isFirstLoad
+    };
 };
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(authenticationAction, dispatch)
-  };
+    return {
+        actions: bindActionCreators(authenticationAction, dispatch)
+    };
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(PrivateRoute);

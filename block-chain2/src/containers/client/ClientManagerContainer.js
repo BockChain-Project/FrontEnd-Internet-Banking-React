@@ -10,54 +10,54 @@ import { Row, Col } from "reactstrap";
 import ClientManage from "../../components/client/ClientManage";
 import * as ClientActions from "./../../actions/client/ClientActions";
 
-import { actFetchAccountsRequest } from './../../actions/client/account';
+import { actFetchAccountsRequest } from "./../../actions/client/account";
 
 type Props = {
-  clients: Array,
-  clientActions: Object,
-  accounts: Object,
-  fetchAllAccounts: PropTypes.func
+    clients: Array,
+    clientActions: Object,
+    accounts: Object,
+    fetchAllAccounts: PropTypes.func
 };
 
 type State = {
-  isSetRedirectFrom: boolean
+    isSetRedirectFrom: boolean
 };
 
 class ClientManagerContainer extends Component<Props, State> {
-  componentWillMount = props => { };
-  componentDidMount() {
-    // console.log("componentDidMount");
-    this.props.fetchAllAccounts();
-  }
-  render() {
-    const { clients, clientActions, accounts } = this.props;
-    return (
-      <Row>
-        <Col>
-          <ClientManage clients={clients} clientActions={clientActions} accounts={accounts} />
-        </Col>
-      </Row>
-    );
-  }
+    componentWillMount = props => {};
+    componentDidMount() {
+        this.props.fetchAllAccounts();
+    }
+    render() {
+        const { clients, clientActions, accounts } = this.props;
+        return (
+            <Row>
+                <Col>
+                    <ClientManage clients={clients} clientActions={clientActions} accounts={accounts} />
+                </Col>
+            </Row>
+        );
+    }
 }
 
 const mapStateToProps = state => {
-  const { clients, accounts } = state.clientReducer;
-  return {
-    clients, accounts
-  };
+    const { clients, accounts } = state.clientReducer;
+    return {
+        clients,
+        accounts
+    };
 };
 
 function mapDispatchToProps(dispatch) {
-  return {
-    clientActions: bindActionCreators(ClientActions, dispatch),
-    fetchAllAccounts: () => {
-      dispatch(actFetchAccountsRequest());
-    }
-  };
+    return {
+        clientActions: bindActionCreators(ClientActions, dispatch),
+        fetchAllAccounts: () => {
+            dispatch(actFetchAccountsRequest());
+        }
+    };
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(ClientManagerContainer);
