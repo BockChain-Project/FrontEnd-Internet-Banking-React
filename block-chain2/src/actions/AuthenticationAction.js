@@ -44,7 +44,6 @@ export const login = (username: string, password: string) => (dispatch: any) => 
             dispatch(loginSuccess(jwtDecode(res.access_token).user));
         })
         .catch(error => {
-            console.log(error);
             dispatch(loginFailure(error));
         });
 };
@@ -62,7 +61,6 @@ export const verifyToken = () => async (dispatch: any) => {
     try {
         TokenApi.postVerifyToken()
             .then(resp => {
-                console.log(resp);
                 dispatch(loginSuccess(resp));
             })
             .catch(error => {

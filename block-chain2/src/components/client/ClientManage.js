@@ -1,15 +1,9 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable no-var */
-/* eslint-disable react/jsx-wrap-multilines */
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable react/prefer-stateless-function */
-/* eslint-disableed-prop-types */
 // @flow
 import React, { Component } from "react";
+import _ from "lodash";
 import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Table } from "reactstrap";
+import { Table, Label } from "reactstrap";
 import AccountItem from "./AccountItem";
 
 type Props = {
@@ -20,17 +14,17 @@ type State = {};
 
 class ClientManage extends Component<Props, State> {
     showAccounts = accounts => {
-        var result = null;
+        let result = null;
         console.log("showAccounts", accounts);
 
         if (accounts.length > 0) {
-            result = accounts.map((account, key) => <AccountItem key={key} account={account} index={key} />);
+            result = _.map(accounts, (account, key) => <AccountItem key={key} account={account} index={key} />);
         }
         return result;
     };
 
     render() {
-        var { accounts } = this.props;
+        const { accounts } = this.props;
         console.log("showAccounts 1", accounts);
 
         return (
@@ -57,13 +51,13 @@ class ClientManage extends Component<Props, State> {
                                 <div className="col-xs-12 col-sm-12 col-md-3">
                                     <h2 className="text-center pull-left" style={{ paddingLeft: "30px" }}>
                                         {" "}
-                                        <span className="glyphicon glyphicon-list-alt"> </span> Details{" "}
+                                        <span className="glyphicon glyphicon-list-alt" /> Details{" "}
                                     </h2>
                                 </div>
                                 <div className="col-xs-9 col-sm-9 col-md-9">
                                     <div className="col-xs-12 col-sm-12 col-md-12">
                                         <div className="col-xs-12 col-md-9">
-                                            <label> Search </label>
+                                            <Label> Search </Label>
                                             <div className="form-group">
                                                 <div className="input-group">
                                                     <input type="text" className="form-control input-md" name="search" />

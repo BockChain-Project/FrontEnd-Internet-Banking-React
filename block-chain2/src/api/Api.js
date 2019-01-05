@@ -40,12 +40,10 @@ class Api {
         return axios
             .get(`${path}`, config)
             .then(res => {
-                console.log(res);
                 if (res.data) return res.data;
                 return res;
             })
             .catch(error => {
-                console.log(error);
                 throw error;
             });
     }

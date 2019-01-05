@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import { URL_TRANFER } from "./../../configs/constants/AppUrlConstant";
 
 type Props = {
     account: Array<any>
@@ -17,15 +18,16 @@ class AccountItem extends Component<Props, State> {
         return (
             <tr className="edit" id="detail">
                 <td id="name" className="text-center">
-                    {" "}
                     {account.account_number}{" "}
                 </td>
                 <td id="balance" className="text-center">
-                    {" "}
-                    {account.balance}{" "}
+                    {account.balance}
                 </td>
                 <td className="text-center">
-                    <button className="btn btn-success">Transfer</button>&#160;&#160;
+                    <Link to={{ pathname: `${URL_TRANFER}`, search: `?user=${account.account_number}` }}>
+                        {" "}
+                        <button className="btn btn-success">Transfer</button>&#160;&#160;
+                    </Link>
                     <button className="btn btn-success">History Transfer</button>&#160;&#160;
                     <button className="btn btn-success">Close Account</button>&#160;&#160;
                 </td>
