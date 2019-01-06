@@ -58,6 +58,8 @@ export const logout = () => (dispatch: any) => {
 export const verifyToken = () => async (dispatch: any) => {
     if (!StorageService.getToken()) {
         if (!StorageService.getRefreshToken()) {
+            StorageService.removeToken();
+            StorageService.removeRefreshToken();
             dispatch(logoutAction());
             return;
         }
@@ -66,6 +68,9 @@ export const verifyToken = () => async (dispatch: any) => {
                 StorageService.setToken(res.access_token);
             })
             .catch(err => {
+                StorageService.removeToken();
+                StorageService.removeRefreshToken();
+                dispatch(logoutAction());
                 throw err;
             });
         return;

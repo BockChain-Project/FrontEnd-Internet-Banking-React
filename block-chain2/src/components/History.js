@@ -10,8 +10,8 @@
 // @flow
 import _ from "lodash";
 import React, { Component } from "react";
+import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
 import HistoryItem from "./HistoryItem";
-
 
 type Props = {
     accounts: Array,
@@ -25,9 +25,7 @@ type State = {};
 class History extends Component<Props, State> {
     constructor(props: any) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     showHistory = accounts => {
@@ -40,27 +38,30 @@ class History extends Component<Props, State> {
         return result;
     };
 
-
-
     render() {
         console.log("this.props.user_account: ", this.props.user_account);
         const { transfers_log } = this.props.history;
 
-        if (!transfers_log)
-            return "";
+        if (!transfers_log) return "";
         console.log("this.props.history: ", transfers_log);
+
         return (
             <div>
                 <div className="breadcrumb">
                     <div className="container">
                         <div className="breadcrumb-inner">
                             <ul className="list-inline list-unstyled">
-                                <li><a href="home.html">Home</a></li>
+                                <li>
+                                    <Link to="/">Home</Link>
+                                </li>
                                 <li className="active">History</li>
                             </ul>
-                        </div>{/* /.breadcrumb-inner */}
-                    </div>{/* /.container */}
-                </div>{/* /.breadcrumb */}
+                        </div>
+                        {/* /.breadcrumb-inner */}
+                    </div>
+                    {/* /.container */}
+                </div>
+                {/* /.breadcrumb */}
                 <div className="body-content">
                     <div className="container">
                         <div className="my-wishlist-page">
@@ -79,15 +80,14 @@ class History extends Component<Props, State> {
                                                     <th className="heading-title">Date</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-
-                                                {this.showHistory(transfers_log)}
-                                            </tbody>
+                                            <tbody>{this.showHistory(transfers_log)}</tbody>
                                         </table>
                                     </div>
                                 </div>
-                            </div>{/* /.row */}
-                        </div>{/* /.sigin-in*/}
+                            </div>
+                            {/* /.row */}
+                        </div>
+                        {/* /.sigin-in*/}
                     </div>
                 </div>
             </div>

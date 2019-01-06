@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable consistent-return */
 /* eslint-disable camelcase */
 // @flow
 import React, { Component } from "react";
@@ -35,8 +37,6 @@ class ClientAccountCloseContainer extends Component<Props, State> {
         // console.log(state);
         accounts.map((item, index) => {
             const { account_number } = state;
-            console.log(item.account_number);
-            console.log(account_number);
             if (item.account_number === account_number) {
                 accounts.splice(index, 1);
                 return null;

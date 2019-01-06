@@ -2,9 +2,10 @@
 // @flow
 export const API_BASE_URL = window.API_URL;
 // phuong add
-export const API_URL = "http://192.168.100.9:5000";
+export const API_URL = "http://localhost:5000";
 
 //user
+export const API_USER_GET_LIST = "/users";
 export const API_USER_LOGIN = "/users/login";
 export const API_TRANSFER_POST = "/otp";
 export const API_TRANSFER_OTP_CONFIRM = "/transfers";

@@ -18,28 +18,25 @@ import clientReducer from "./reducers/client/ClientReducer";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  authentication: authenticationReducer,
-  headerReducer,
-  userReducer,
-  clientReducer
+    authentication: authenticationReducer,
+    headerReducer,
+    userReducer,
+    clientReducer
 });
 
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
-);
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 const root = document.getElementById("root");
 if (root == null) {
-  throw new Error("no root element");
+    throw new Error("no root element");
 }
 
 const app = (
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>
 );
 
 ReactDOM.render(app, root);

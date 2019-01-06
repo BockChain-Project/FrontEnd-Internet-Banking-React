@@ -39,7 +39,6 @@ class HistoryContainer extends Component<Props, State> {
         const { clients, clientActions, accounts, history } = this.props;
         const { user } = qs.parse(this.props.location.search);
 
-        console.log("HistoryContainer", history);
         return (
             <Row>
                 <Col>
@@ -62,7 +61,7 @@ const mapStateToProps = state => {
 function mapDispatchToProps(dispatch) {
     return {
         clientActions: bindActionCreators(ClientActions, dispatch),
-        fetchAllHistory: (user) => {
+        fetchAllHistory: user => {
             dispatch(actFetchHistoryRequest(user));
         }
     };

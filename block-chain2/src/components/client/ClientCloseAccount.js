@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable no-param-reassign */
 /* eslint-disable camelcase */
 // @flow
@@ -49,7 +50,7 @@ class ClientCloseAccount extends Component<Props, State> {
         };
     }
     componentDidUpdate = (props: any) => {
-        console.log("11111111", this.state.isRedirect);
+        // console.log("11111111", this.state.isRedirect);
         if (this.state.isRedirect) return <Redirect from="/transfer" to="/" push />;
         return null;
     };
@@ -65,9 +66,9 @@ class ClientCloseAccount extends Component<Props, State> {
     render() {
         const { state, accounts } = this.props;
         if (!state || !accounts) return "";
-        console.log(accounts);
+        // console.log(accounts);
         const { disabled } = this.state;
-        console.log(this.state.isRedirect);
+        // console.log(this.state.isRedirect);
         if (this.state.isRedirect)
             return (
                 <Redirect
@@ -132,7 +133,7 @@ class ClientCloseAccount extends Component<Props, State> {
                         <h3 className="text-center">Your balance:&#160; {format2(state.balance)} vnd</h3>
                         {state.balance > 0 && (
                             <h4 style={{ color: "red" }} className="text-center">
-                                Please transfer your balance to another account
+                                Please transfer your balance to another account before close this account
                             </h4>
                         )}
                         <div className="panel-body table-responsive">
@@ -167,7 +168,6 @@ class ClientCloseAccount extends Component<Props, State> {
                                                         });
                                                     actions.setSubmitting(false);
                                                 }, 100);
-                                                console.log("end");
                                             }}
                                             render={props => (
                                                 <form className="search-form" onSubmit={props.handleSubmit}>
@@ -396,6 +396,11 @@ class ClientCloseAccount extends Component<Props, State> {
                                             )}
                                         />
                                     )}
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md={{ size: 10, offset: 3 }}>
+                                    <button>Close Account</button>
                                 </Col>
                             </Row>
                         </div>

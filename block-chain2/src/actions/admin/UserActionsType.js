@@ -1,2 +1,2 @@
 /* eslint-disable import/prefer-default-export */
-export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+export const USERS_LIST = "USERS_LIST";
