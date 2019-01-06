@@ -11,3 +11,8 @@ export const API_TRANSFER_OTP_CONFIRM = "/transfers";
 // users_account
 export const API_USER_ACCOUNT_GET = "/accounts";
 export const API_USER_ACCOUNT_INFOR = "/accounts/user";
+
+// Recipient List
+export const API_RECIPIENT_LIST_GET = "/recipients";
+
+export const API_HISTORY_GET = "/transfers";

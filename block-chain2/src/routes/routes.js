@@ -9,9 +9,12 @@ import ClientAccountCloseContainer from "./../containers/client/ClientAccountClo
 import HomeContainer from "./../containers/auth/HomeContainer";
 import ContactContainer from "./../containers/client/ContactContainer";
 import ErrorPage from "./../components/Error";
-import History from "./../components/History";
+import HistoryContainer from "./../containers/client/HistoryContainer";
+import RecipientListContainer from "../containers/client/RecipientListContainer";
+
 import Transfer from "./../components/Transfer";
 import { URL_TRANFER, URL_TRANFER_OTP, URL_ACCOUNT_CLOSE } from "./../configs/constants/AppUrlConstant";
+
 
 const routes = [
     {
@@ -23,11 +26,6 @@ const routes = [
         path: "/",
         exact: true,
         main: () => <ClientManagerContainer />
-    },
-    {
-        path: "/history",
-        exact: false,
-        main: () => <History />
     },
     {
         path: "/contact",
@@ -53,6 +51,16 @@ const routes = [
         path: "/admin-login",
         exact: false,
         main: () => <UserManagerContainer />
+    },
+    {
+        path: "/history",
+        exact: false,
+        main: () => <HistoryContainer />
+    },
+    {
+        path: "/recipients",
+        exact: false,
+        main: () => <RecipientListContainer />
     },
     {
         path: "",
