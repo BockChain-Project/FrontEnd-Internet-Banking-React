@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import { Table, Col, Row, Label, Input, FormGroup, Button } from "reactstrap";
 import AccountItem from "./AccountItem";
 import Api from "./../../api/Api";
+import { URL_TRANFER_OTP } from "./../../configs/constants/AppUrlConstant";
 import { API_URL, API_USER_ACCOUNT_INFOR, API_TRANSFER_POST, API_BASE_URL } from "./../../configs/AppConfig";
 
 type Props = {
@@ -23,14 +24,13 @@ type Props = {
 };
 
 type State = {
-    disabled: boolean
+    disabled: boolean,
+    isRedirect: boolean,
+    transaction_token: string
 };
-const express = /^[0-9]+$/;
 
+const express = /^[0-9]+$/;
 const SignupSchema = Yup.object().shape({
-    dest_account: Yup.string()
-        .required("Please input number account of reveiver")
-        .matches(express, "Number account is not valid"),
     amount: Yup.string()
         .required("Please input number account of reveiver")
         .typeError("This field is only included number")
@@ -40,24 +40,28 @@ class ClientTransfer extends Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
-            disabled: false
+            disabled: false,
+            isRedirect: false,
+            transaction_token: ""
         };
     }
-    showAccounts = accounts => {
-        let result = null;
-
-        if (accounts.length > 0) {
-            result = _.map(accounts, (account, key) => <AccountItem key={key} account={account} index={key} />);
-        }
-        return result;
+    componentDidUpdate = (props: any) => {
+        console.log("11111111", this.state.isRedirect);
+        if (this.state.isRedirect) return <Redirect from="/transfer" to="/" push />;
+        return null;
     };
-
     render() {
         const { accounts, clientActions, user_account } = this.props;
         const { disabled } = this.state;
+        console.log(this.state.isRedirect);
+        if (this.state.isRedirect)
+            return (
+                <Redirect
+                    to={{ pathname: `${URL_TRANFER_OTP}`, state: this.state.transaction_token, search: `?user=${user_account}` }}
+                    push
+                />
+            );
 
-        const otp = `${this.props.location.pathname}/otp${this.props.location.search}`;
-        console.log(otp);
         if (!user_account) return "";
         const initValues = {
             fee_type: 1,
@@ -134,20 +138,17 @@ class ClientTransfer extends Component<Props, State> {
                                                 Api.post(`${API_BASE_URL}${API_TRANSFER_POST}`, values)
                                                     .then(res => {
                                                         console.log(res);
-                                                        return (
-                                                            <Redirect
-                                                                to={{
-                                                                    pathname: `${API_BASE_URL}${API_TRANSFER_POST}`,
-                                                                    search: `?user=${user_account}`
-                                                                }}
-                                                            />
-                                                        );
+                                                        this.setState({
+                                                            isRedirect: true,
+                                                            transaction_token: res.transaction_token
+                                                        });
                                                     })
                                                     .catch(err => {
                                                         throw err;
                                                     });
                                                 actions.setSubmitting(false);
                                             }, 100);
+                                            console.log("end");
                                         }}
                                         render={props => (
                                             <form className="search-form" onSubmit={props.handleSubmit}>
@@ -264,7 +265,7 @@ class ClientTransfer extends Component<Props, State> {
                                                                 id="email"
                                                                 onChange={props.handleChange}
                                                                 onBlur={props.handleBlur}
-                                                                value={props.values.email}
+                                                                defaultValue={props.values.email}
                                                             />
                                                         </FormGroup>
                                                     </Col>
@@ -280,7 +281,7 @@ class ClientTransfer extends Component<Props, State> {
                                                                 id="phone"
                                                                 onChange={props.handleChange}
                                                                 onBlur={props.handleBlur}
-                                                                value={props.values.phone}
+                                                                defaultValue={props.values.phone}
                                                             />
                                                             {/* <ErrorMessage name="phone">{msg => <div className="errormess">{msg}</div>}</ErrorMessage> */}
                                                         </FormGroup>
@@ -299,10 +300,6 @@ class ClientTransfer extends Component<Props, State> {
                                                                 id="amount"
                                                                 onChange={e => {
                                                                     props.handleChange(e);
-                                                                    // const { value } = e.currentTarget;
-                                                                    // const temp = format2(value, "");
-                                                                    // console.log(temp);
-                                                                    // document.getElementById("money").value = temp;
                                                                 }}
                                                                 onBlur={props.handleBlur}
                                                                 defaultValue={props.values.money}
@@ -366,9 +363,11 @@ class ClientTransfer extends Component<Props, State> {
                                                         </FormGroup>
                                                     </Col>
                                                     <Col style={{ marginTop: "80px" }} md={1}>
+                                                        {/* <Link to={{ pathname: `${URL_TRANFER_OTP}`, search: `user=${user_account}` }}> */}
                                                         <button type="submit" className="btn btn-primary">
                                                             Gửi tiền
                                                         </button>
+                                                        {/* </Link> */}
                                                     </Col>
                                                 </Row>
                                             </form>

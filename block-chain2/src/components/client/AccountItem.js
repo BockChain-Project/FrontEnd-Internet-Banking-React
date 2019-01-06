@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { URL_TRANFER } from "./../../configs/constants/AppUrlConstant";
+import { URL_TRANFER, URL_ACCOUNT_CLOSE } from "./../../configs/constants/AppUrlConstant";
 
 type Props = {
     account: Array<any>
@@ -29,7 +29,10 @@ class AccountItem extends Component<Props, State> {
                         <button className="btn btn-success">Transfer</button>&#160;&#160;
                     </Link>
                     <button className="btn btn-success">History Transfer</button>&#160;&#160;
-                    <button className="btn btn-success">Close Account</button>&#160;&#160;
+                    <Link to={{ pathname: `${URL_ACCOUNT_CLOSE}`, state: account }}>
+                        <button className="btn btn-success">Close Account</button>
+                    </Link>
+                    &#160;&#160;
                 </td>
             </tr>
         );

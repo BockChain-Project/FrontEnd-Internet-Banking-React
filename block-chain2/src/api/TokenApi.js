@@ -11,7 +11,7 @@ class TokenApi {
     }
 
     static postVerifyRefreshToken() {
-        return api.getFreshToken(`${API_BASE_URL}/oauth/access`);
+        return api.getFreshToken(`${API_BASE_URL}/auth/access`);
     }
 }
 

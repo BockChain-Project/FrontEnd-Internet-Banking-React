@@ -9,42 +9,42 @@ import * as authenticationAction from "../../actions/AuthenticationAction";
 import Home from "../../components/Home";
 
 class HomeContainer extends Component {
-  componentDidMount = () => {};
+    componentDidMount = () => {};
 
-  render() {
-    const { isAuthenticated, isFailure, actions, userInfo } = this.props;
+    render() {
+        const { isAuthenticated, isFailure, actions, userInfo } = this.props;
 
-    return (
-      <div>
-        <Home userInfo={userInfo} />
-      </div>
-    );
-  }
+        return (
+            <div>
+                <Home userInfo={userInfo} />
+            </div>
+        );
+    }
 }
 
 HomeContainer.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-  isFailure: PropTypes.bool.isRequired,
-  actions: PropTypes.object.isRequired,
-  userInfo: PropTypes.object.isRequired
+    isAuthenticated: PropTypes.bool.isRequired,
+    isFailure: PropTypes.bool.isRequired,
+    actions: PropTypes.object.isRequired,
+    userInfo: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {
-  const { isAuthenticated, isFailure, userInfo } = state.authentication;
-  return {
-    isAuthenticated,
-    isFailure,
-    userInfo
-  };
+    const { isAuthenticated, isFailure, userInfo } = state.authentication;
+    return {
+        isAuthenticated,
+        isFailure,
+        userInfo
+    };
 };
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(authenticationAction, dispatch)
-  };
+    return {
+        actions: bindActionCreators(authenticationAction, dispatch)
+    };
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(HomeContainer);

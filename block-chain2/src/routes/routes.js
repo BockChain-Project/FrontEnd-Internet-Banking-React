@@ -4,12 +4,14 @@ import UserManagerContainer from "./../containers/AdminContainer/UserManagerCont
 import ClientManagerContainer from "./../containers/client/ClientManagerContainer";
 import ClientTransferContainer from "./../containers/client/ClientTransferContainer";
 import LogoutContainer from "./../containers/auth/LogoutContainer";
+import ClientTransferOtp from "./../components/client/ClientTransferOtp";
+import ClientAccountCloseContainer from "./../containers/client/ClientAccountCloseContainer";
 import HomeContainer from "./../containers/auth/HomeContainer";
 import ContactContainer from "./../containers/client/ContactContainer";
 import ErrorPage from "./../components/Error";
 import History from "./../components/History";
 import Transfer from "./../components/Transfer";
-import { URL_TRANFER } from "./../configs/constants/AppUrlConstant";
+import { URL_TRANFER, URL_TRANFER_OTP, URL_ACCOUNT_CLOSE } from "./../configs/constants/AppUrlConstant";
 
 const routes = [
     {
@@ -34,8 +36,18 @@ const routes = [
     },
     {
         path: `${URL_TRANFER}`,
-        exact: false,
+        exact: true,
         main: () => <ClientTransferContainer />
+    },
+    {
+        path: `${URL_TRANFER_OTP}`,
+        exact: false,
+        main: () => <ClientTransferOtp />
+    },
+    {
+        path: `${URL_ACCOUNT_CLOSE}`,
+        exact: false,
+        main: () => <ClientAccountCloseContainer />
     },
     {
         path: "/admin-login",

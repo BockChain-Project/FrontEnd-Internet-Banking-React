@@ -15,7 +15,6 @@ type State = {};
 class ClientManage extends Component<Props, State> {
     showAccounts = accounts => {
         let result = null;
-        console.log("showAccounts", accounts);
 
         if (accounts.length > 0) {
             result = _.map(accounts, (account, key) => <AccountItem key={key} account={account} index={key} />);
@@ -25,7 +24,6 @@ class ClientManage extends Component<Props, State> {
 
     render() {
         const { accounts } = this.props;
-        console.log("showAccounts 1", accounts);
 
         return (
             <div>

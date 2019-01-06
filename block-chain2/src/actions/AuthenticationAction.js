@@ -57,7 +57,10 @@ export const logout = () => (dispatch: any) => {
 
 export const verifyToken = () => async (dispatch: any) => {
     if (!StorageService.getToken()) {
-        // dispatch(logoutAction());
+        if (!StorageService.getRefreshToken()) {
+            dispatch(logoutAction());
+            return;
+        }
         TokenApi.postVerifyRefreshToken()
             .then(res => {
                 StorageService.setToken(res.access_token);

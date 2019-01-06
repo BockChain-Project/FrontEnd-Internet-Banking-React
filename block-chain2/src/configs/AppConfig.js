@@ -7,6 +7,7 @@ export const API_URL = "http://192.168.100.9:5000";
 //user
 export const API_USER_LOGIN = "/users/login";
 export const API_TRANSFER_POST = "/otp";
+export const API_TRANSFER_OTP_CONFIRM = "/transfers";
 // users_account
 export const API_USER_ACCOUNT_GET = "/accounts";
 export const API_USER_ACCOUNT_INFOR = "/accounts/user";
