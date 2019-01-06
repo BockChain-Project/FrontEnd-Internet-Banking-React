@@ -7,7 +7,9 @@ const initialState = {
     clients: [],
     pagination: 1,
     accounts: [],
-    userInfo: null
+    userInfo: null,
+    history: [],
+    recipients: []
 };
 
 const ClientReducer = (state = initialState, action) => {
@@ -24,6 +26,17 @@ const ClientReducer = (state = initialState, action) => {
                 userInfo: action.userInfo
             };
         }
+        case Types.FETCH_RECIPIENT_LIST:
+            return {
+                ...state,
+                recipients: action.recipients
+            };
+        case Types.FETCH_HISTORY:
+            //  console.log(action);
+            return {
+                ...state,
+                history: action.history
+            };
         default: {
             return { ...state };
         }

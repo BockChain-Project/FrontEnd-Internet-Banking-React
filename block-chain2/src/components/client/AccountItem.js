@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { URL_TRANFER } from "./../../configs/constants/AppUrlConstant";
+import { URL_TRANFER, URL_HISTORY } from "./../../configs/constants/AppUrlConstant";
 
 type Props = {
     account: Array<any>
@@ -11,7 +11,7 @@ type Props = {
 type State = {};
 
 class AccountItem extends Component<Props, State> {
-    componentWillMount = () => {};
+    componentWillMount = () => { };
 
     render() {
         const { account } = this.props;
@@ -30,6 +30,10 @@ class AccountItem extends Component<Props, State> {
                     </Link>
                     <button className="btn btn-success">History Transfer</button>&#160;&#160;
                     <button className="btn btn-success">Close Account</button>&#160;&#160;
+                    <Link to={{ pathname: `${URL_HISTORY}`, search: `?user=${account.account_number}` }}>
+                        {" "}
+                        <button className="btn btn-success">History</button>&#160;&#160;
+                    </Link>
                 </td>
             </tr>
         );
