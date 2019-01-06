@@ -16,7 +16,8 @@ type Props = {
     clients: Array,
     clientActions: Object,
     accounts: Object,
-    fetchAllAccounts: Function
+    fetchAllAccounts: Function,
+    userInfo: Object
 };
 
 type State = {
@@ -32,13 +33,13 @@ class ClientTransferContainer extends Component<Props, State> {
         this.props.fetchAllAccounts();
     }
     render() {
-        const { clients, clientActions, accounts } = this.props;
+        const { clients, clientActions, accounts, userInfo } = this.props;
         const { user } = qs.parse(this.props.location.search);
 
         return (
             <Row>
                 <Col>
-                    <ClientTransfer user_account={user} clientActions={clientActions} accounts={accounts} />
+                    <ClientTransfer user_account={user} clientActions={clientActions} accounts={accounts} userInfo={userInfo} />
                 </Col>
             </Row>
         );
@@ -46,10 +47,11 @@ class ClientTransferContainer extends Component<Props, State> {
 }
 
 const mapStateToProps = state => {
-    const { clients, accounts } = state.clientReducer;
+    const { clients, accounts, userInfo } = state.clientReducer;
     return {
         clients,
-        accounts
+        accounts,
+        userInfo
     };
 };
 

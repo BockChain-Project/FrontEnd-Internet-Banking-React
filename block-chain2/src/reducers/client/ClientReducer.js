@@ -6,7 +6,8 @@ import * as Types from "./../../actions/client/ClientActionType";
 const initialState = {
     clients: [],
     pagination: 1,
-    accounts: []
+    accounts: [],
+    userInfo: null
 };
 
 const ClientReducer = (state = initialState, action) => {
@@ -16,6 +17,13 @@ const ClientReducer = (state = initialState, action) => {
                 ...state,
                 accounts: action.accounts
             };
+        case Types.USER_ACCOUNT_INFOR: {
+            // console.log(action);
+            return {
+                ...state,
+                userInfo: action.userInfo
+            };
+        }
         default: {
             return { ...state };
         }

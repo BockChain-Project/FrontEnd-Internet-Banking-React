@@ -9,6 +9,10 @@ class TokenApi {
         const { uid } = jwtDecode(StorageService.getToken()).user;
         return api.get(`${API_BASE_URL}/users/${uid}`);
     }
+
+    static postVerifyRefreshToken() {
+        return api.getFreshToken(`${API_BASE_URL}/oauth/access`);
+    }
 }
 
 export default TokenApi;

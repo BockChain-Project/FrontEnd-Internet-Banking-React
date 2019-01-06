@@ -4,7 +4,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import * as Yup from "yup";
-import { Redirect } from "react-router";
 import { Formik, ErrorMessage } from "formik";
 import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -16,10 +15,7 @@ import { API_URL, API_USER_ACCOUNT_INFOR, API_TRANSFER_POST, API_BASE_URL } from
 type Props = {
     accounts: Array,
     user_account: string,
-    clientActions: Object,
-    location: Object,
-    pathname: Object,
-    search: Object
+    clientActions: Object
 };
 
 type State = {
@@ -56,8 +52,6 @@ class ClientTransfer extends Component<Props, State> {
         const { accounts, clientActions, user_account } = this.props;
         const { disabled } = this.state;
 
-        const otp = `${this.props.location.pathname}/otp${this.props.location.search}`;
-        console.log(otp);
         if (!user_account) return "";
         const initValues = {
             fee_type: 1,
@@ -68,7 +62,7 @@ class ClientTransfer extends Component<Props, State> {
             email: "",
             phone: "",
             amount: "",
-            note: ""
+            content: ""
         };
         // const priceSplitter = value => value && value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
         function format2(n, currency) {
@@ -122,31 +116,10 @@ class ClientTransfer extends Component<Props, State> {
                                         onSubmit={(values, actions) => {
                                             setTimeout(() => {
                                                 console.log(values);
-                                                let key = "username";
-                                                delete values[key];
-                                                key = "displayName";
-                                                delete values[key];
-                                                key = "email";
-                                                delete values[key];
-                                                key = "phone";
-                                                delete values[key];
-
-                                                Api.post(`${API_BASE_URL}${API_TRANSFER_POST}`, values)
-                                                    .then(res => {
-                                                        console.log(res);
-                                                        return (
-                                                            <Redirect
-                                                                to={{
-                                                                    pathname: `${API_BASE_URL}${API_TRANSFER_POST}`,
-                                                                    search: `?user=${user_account}`
-                                                                }}
-                                                            />
-                                                        );
-                                                    })
-                                                    .catch(err => {
-                                                        throw err;
-                                                    });
                                                 actions.setSubmitting(false);
+                                                Api.post(`${API_BASE_URL}${API_TRANSFER_POST}`, values).then(res => {
+                                                    console.log(res);
+                                                });
                                             }, 100);
                                         }}
                                         render={props => (
@@ -307,20 +280,20 @@ class ClientTransfer extends Component<Props, State> {
                                                                 onBlur={props.handleBlur}
                                                                 defaultValue={props.values.money}
                                                             />
-                                                            <ErrorMessage name="amount">
+                                                            <ErrorMessage name="money">
                                                                 {msg => <div className="errormess">{msg}</div>}
                                                             </ErrorMessage>
                                                         </FormGroup>
                                                     </Col>
                                                     <Col md={6}>
                                                         <FormGroup className="mb-2 mr-sm-2 mb-sm-2">
-                                                            <Label for="note" className="mr-sm-2">
+                                                            <Label for="content" className="mr-sm-2">
                                                                 content transfer
                                                             </Label>
                                                             <Input
                                                                 disabled={disabled}
                                                                 type="text"
-                                                                name="note"
+                                                                name="content"
                                                                 onChange={props.handleChange}
                                                                 onBlur={props.handleBlur}
                                                                 defaultValue={props.values.content}

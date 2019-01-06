@@ -41,6 +41,7 @@ export const login = (username: string, password: string) => (dispatch: any) => 
     Api.post(`${API_BASE_URL}${API_USER_LOGIN}`, { username, password })
         .then(res => {
             StorageService.setToken(res.access_token);
+            StorageService.setRefreshToken(res.refresh_token);
             dispatch(loginSuccess(jwtDecode(res.access_token).user));
         })
         .catch(error => {
@@ -50,12 +51,20 @@ export const login = (username: string, password: string) => (dispatch: any) => 
 
 export const logout = () => (dispatch: any) => {
     StorageService.removeToken();
+    StorageService.removeRefreshToken();
     dispatch(logoutAction());
 };
 
 export const verifyToken = () => async (dispatch: any) => {
     if (!StorageService.getToken()) {
-        dispatch(logoutAction());
+        // dispatch(logoutAction());
+        TokenApi.postVerifyRefreshToken()
+            .then(res => {
+                StorageService.setToken(res.access_token);
+            })
+            .catch(err => {
+                throw err;
+            });
         return;
     }
     try {

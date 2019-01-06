@@ -1,7 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable prefer-template */
-/* eslint-disable no-var */
-/* eslint-disable arrow-body-style */
 // @flow
 import axios from "axios";
 import _ from "lodash";
@@ -12,15 +8,14 @@ class Api {
     static post(path: string, data: Object) {
         const config = {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "x-access-token": StorageService.getToken()
             }
         };
-        // console.info(data);
         const jsonData = JSON.stringify(data);
         return axios
             .post(`${path}`, data, config)
             .then(res => {
-                // console.log(res.data);
                 return res.data;
             })
             .catch(error => {
@@ -47,12 +42,30 @@ class Api {
                 throw error;
             });
     }
-
-    static getWithParams(path: string, paramsData: Object) {
-        console.log(paramsData);
+    static getFreshToken(path: string) {
+        const token = StorageService.getRefreshToken();
         const config = {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "x-refresh-token": token
+            }
+        };
+
+        return axios
+            .get(`${path}`, config)
+            .then(res => {
+                if (res.data) return res.data;
+                return res;
+            })
+            .catch(error => {
+                throw error;
+            });
+    }
+    static getWithParams(path: string, paramsData: Object) {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "x-access-token": StorageService.getToken()
             },
             params: paramsData
         };
@@ -60,7 +73,7 @@ class Api {
         return axios
             .get(`${path}`, config)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 return res.data;
             })
             .catch(error => {
