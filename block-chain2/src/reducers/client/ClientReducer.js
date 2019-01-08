@@ -9,7 +9,8 @@ const initialState = {
     accounts: [],
     userInfo: null,
     history: [],
-    recipients: []
+    recipients: [],
+    closeAccount: null
 };
 
 const ClientReducer = (state = initialState, action) => {
@@ -24,6 +25,13 @@ const ClientReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userInfo: action.userInfo
+            };
+        }
+        case Types.CLIENT_ACCOUNT_CLOSE: {
+            console.log(action);
+            return {
+                ...state,
+                closeAccount: action.account
             };
         }
         case Types.FETCH_RECIPIENT_LIST:

@@ -6,7 +6,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Link, withRouter } from "react-router-dom";
 import { Nav, DropdownToggle, DropdownMenu, DropdownItem, NavItem, Navbar, Dropdown, NavLink } from "reactstrap";
 import logo from "./logo.png";
-import { URL_ADMIN_ADD_USER } from "./../configs/constants/AppUrlConstant";
+import { URL_ADMIN_ADD_USER, URL_ADMIN_LIST_USER } from "./../configs/constants/AppUrlConstant";
 
 type Props = {
     isAuthenticated: boolean,
@@ -89,9 +89,28 @@ class Header extends Component<Props, State> {
                                             )}
                                         </li>
                                         <li>
+                                            <Link to="recipients">
+                                                <span>List recipients</span>
+                                            </Link>
+                                        </li>
+                                        <li>
                                             {userInfo.role === 1 && (
                                                 <Link to={URL_ADMIN_ADD_USER}>
                                                     <span>Add User</span>
+                                                </Link>
+                                            )}
+                                        </li>
+                                        <li>
+                                            {userInfo.role === 2 && (
+                                                <Link to={URL_ADMIN_LIST_USER}>
+                                                    <span>List Users</span>
+                                                </Link>
+                                            )}
+                                        </li>
+                                        <li>
+                                            {userInfo.role === 1 && (
+                                                <Link to={URL_ADMIN_LIST_USER}>
+                                                    <span>List Users</span>
                                                 </Link>
                                             )}
                                         </li>

@@ -13,7 +13,6 @@ import ContactContainer from "./../containers/client/ContactContainer";
 import ErrorPage from "./../components/Error";
 import HistoryContainer from "./../containers/client/HistoryContainer";
 import RecipientListContainer from "../containers/client/RecipientListContainer";
-
 import Transfer from "./../components/Transfer";
 import {
     URL_TRANFER,
@@ -30,6 +29,11 @@ const routes = [
         path: "/logout",
         exact: false,
         main: () => <LogoutContainer />
+    },
+    {
+        path: "/recipients",
+        exact: false,
+        main: () => <RecipientListContainer />
     },
     {
         path: "/",

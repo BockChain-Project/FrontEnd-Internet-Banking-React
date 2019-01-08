@@ -42,6 +42,26 @@ class Api {
                 throw error;
             });
     }
+
+    static delete(path: string) {
+        const token = StorageService.getToken();
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "x-access-token": token
+            }
+        };
+
+        return axios
+            .delete(`${path}`, config)
+            .then(res => {
+                if (res.data) return res.data;
+                return res;
+            })
+            .catch(error => {
+                throw error;
+            });
+    }
     static getFreshToken(path: string) {
         const token = StorageService.getRefreshToken();
         const config = {

@@ -28,7 +28,7 @@ class AccountItem extends Component<Props, State> {
                     {format2(account.balance)}
                 </td>
                 <td className="text-center">
-                    <Link to={{ pathname: `${URL_TRANFER}`, search: `?user=${account.account_number}` }}>
+                    <Link to={{ pathname: `${URL_TRANFER}`, search: `?user=${account.account_number}`, state: account }}>
                         {" "}
                         <button className="btn btn-success">Transfer</button>&#160;&#160;
                     </Link>

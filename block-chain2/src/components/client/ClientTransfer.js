@@ -53,7 +53,8 @@ class ClientTransfer extends Component<Props, State> {
     render() {
         const { accounts, clientActions, user_account } = this.props;
         const { disabled } = this.state;
-        console.log(this.state.isRedirect);
+        // console.log(this.state.isRedirect);
+        const { balance } = this.props.location.state;
         if (this.state.isRedirect)
             return (
                 <Redirect
@@ -135,6 +136,10 @@ class ClientTransfer extends Component<Props, State> {
                                                 key = "phone";
                                                 delete values[key];
 
+                                                if (values.amount > balance) {
+                                                    alert("Money transfer must not be greater than balance");
+                                                    return;
+                                                }
                                                 Api.post(`${API_BASE_URL}${API_TRANSFER_POST}`, values)
                                                     .then(res => {
                                                         console.log(res);

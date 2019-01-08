@@ -9,6 +9,7 @@ import {
     URL_ADMIN_ADD_ACCOUNT,
     URL_ADMIN_USER_DEPOSIT
 } from "./../../configs/constants/AppUrlConstant";
+import Api from "../../api/Api";
 
 type Props = {
     user: Array<any>
@@ -24,7 +25,7 @@ class UserItem extends Component<Props, State> {
         function format2(n: any, currency: any = "") {
             return currency + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
         }
-
+        console.log(user);
         return (
             <tr className="edit" id="detail">
                 <td id="name" className="text-center">

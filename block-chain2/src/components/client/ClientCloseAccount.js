@@ -13,13 +13,14 @@ import { Table, Col, Row, Label, Input, FormGroup, Button } from "reactstrap";
 import AccountItem from "./AccountItem";
 import Api from "./../../api/Api";
 import { URL_TRANFER_OTP } from "./../../configs/constants/AppUrlConstant";
-import { API_URL, API_USER_ACCOUNT_INFOR, API_TRANSFER_POST, API_BASE_URL } from "./../../configs/AppConfig";
+import { API_URL, API_USER_ACCOUNT_INFOR, API_TRANSFER_POST, API_BASE_URL, API_USER_ACCOUNT_DELETE } from "./../../configs/AppConfig";
 
 type Props = {
     // accounts: Array,
     // user_account: string,
     accounts: Object,
-    state: Object
+    state: Object,
+    closeAccount: Object
     // pathname: Object
     // search: Object
 };
@@ -64,21 +65,15 @@ class ClientCloseAccount extends Component<Props, State> {
         });
     };
     render() {
-        const { state, accounts } = this.props;
+        const { state, accounts, closeAccount } = this.props;
         if (!state || !accounts) return "";
         // console.log(accounts);
         const { disabled } = this.state;
         // console.log(this.state.isRedirect);
-        if (this.state.isRedirect)
-            return (
-                <Redirect
-                    to={{ pathname: `${URL_TRANFER_OTP}`, state: this.state.transaction_token, search: `?user=${state.account_number}` }}
-                    push
-                />
-            );
+        if (this.state.isRedirect) return <Redirect to="/" push />;
         // const { account_number } = accounts;
         const initValues = {
-            fee_type: 1,
+            fee_type: 2,
             dest_account: accounts.length > 0 ? accounts[0].account_number : "",
             src_account: state.account_number,
             username: "",
@@ -130,8 +125,8 @@ class ClientCloseAccount extends Component<Props, State> {
                                 </div>
                             </div>
                         </div>
-                        <h3 className="text-center">Your balance:&#160; {format2(state.balance)} vnd</h3>
-                        {state.balance > 0 && (
+                        <h3 className="text-center">Your balance:&#160; {format2(closeAccount.balance)} vnd</h3>
+                        {closeAccount.balance > 0 && (
                             <h4 style={{ color: "red" }} className="text-center">
                                 Please transfer your balance to another account before close this account
                             </h4>
@@ -139,7 +134,7 @@ class ClientCloseAccount extends Component<Props, State> {
                         <div className="panel-body table-responsive">
                             <Row>
                                 <Col md={{ size: 10, offset: 3 }}>
-                                    {state.balance > 0 && (
+                                    {closeAccount.balance > 0 && (
                                         <Formik
                                             initialValues={initValues}
                                             // validationSchema={SignupSchema}
@@ -356,6 +351,7 @@ class ClientCloseAccount extends Component<Props, State> {
                                                                     Model Fee
                                                                 </Label>
                                                                 <Input
+                                                                    disabled
                                                                     type="select"
                                                                     name="fee_type"
                                                                     onChange={props.handleChange}
@@ -400,7 +396,24 @@ class ClientCloseAccount extends Component<Props, State> {
                             </Row>
                             <Row>
                                 <Col md={{ size: 10, offset: 3 }}>
-                                    <button>Close Account</button>
+                                    <button
+                                        className="btn btn-success"
+                                        onClick={() => {
+                                            if (closeAccount.balance > 0) {
+                                                alert("Please transfer your balance to another account");
+                                                return;
+                                            }
+                                            Api.delete(`${API_BASE_URL}${API_USER_ACCOUNT_DELETE}/${closeAccount.id}`).then(res => {
+                                                console.log(res);
+                                                this.setState({
+                                                    isRedirect: true
+                                                });
+                                            });
+                                            console.log("erer");
+                                        }}
+                                    >
+                                        Close Account
+                                    </button>
                                 </Col>
                             </Row>
                         </div>

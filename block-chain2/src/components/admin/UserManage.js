@@ -13,7 +13,7 @@ import { Table, Col, Row, Label, Input, FormGroup, Button } from "reactstrap";
 // import AccountItem from "./AccountItem";
 import Api from "./../../api/Api";
 import { URL_ADMIN_LIST_USER } from "./../../configs/constants/AppUrlConstant";
-import { API_URL, API_USER_ACCOUNT_INFOR, API_TRANSFER_POST, API_BASE_URL } from "./../../configs/AppConfig";
+import { API_URL, API_USER_ACCOUNT_INFOR, API_TRANSFER_POST, API_BASE_URL, API_USER_GET_LIST } from "./../../configs/AppConfig";
 
 type Props = {};
 
@@ -36,7 +36,9 @@ const SignupSchema = Yup.object().shape({
 class UserManager extends Component<Props, State> {
     constructor(props: any) {
         super(props);
-        this.state = {};
+        this.state = {
+            isRedirect: false
+        };
     }
     render() {
         const initValues = {
@@ -45,14 +47,13 @@ class UserManager extends Component<Props, State> {
             first_name: "",
             last_name: "",
             email: "",
-            phone: "",
-            role: 3
+            phone: ""
         };
         // const priceSplitter = value => value && value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
         function format2(n: any, currency: any = "") {
             return currency + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
         }
-
+        if (this.state.isRedirect) return <Redirect to={URL_ADMIN_LIST_USER} push />;
         return (
             <div>
                 <div className="breadcrumb">
@@ -98,17 +99,18 @@ class UserManager extends Component<Props, State> {
                                             onSubmit={(values, actions) => {
                                                 setTimeout(() => {
                                                     console.log(values);
-                                                    // Api.post(`${API_BASE_URL}${API_TRANSFER_POST}`, values)
-                                                    //     .then(res => {
-                                                    //         console.log(res);
-                                                    //         // this.setState({
-                                                    //         //     isRedirect: true,
-                                                    //         //     transaction_token: res.transaction_token
-                                                    //         // });
-                                                    //     })
-                                                    //     .catch(err => {
-                                                    //         throw err;
-                                                    //     });
+                                                    Api.post(`${API_BASE_URL}${API_USER_GET_LIST}`, values)
+                                                        .then(res => {
+                                                            console.log(res.msg);
+                                                            this.setState({
+                                                                isRedirect: true
+                                                            });
+                                                        })
+                                                        .catch(err => {
+                                                            console.log(err.msg);
+                                                            alert("username has already used");
+                                                            throw err;
+                                                        });
                                                     actions.setSubmitting(false);
                                                 }, 100);
                                             }}
@@ -213,7 +215,7 @@ class UserManager extends Component<Props, State> {
                                                                 </ErrorMessage>
                                                             </FormGroup>
                                                         </Col>
-                                                        <Col style={{ marginLeft: "155px" }} md={1}>
+                                                        <Col style={{ marginLeft: "155px" }} md={2}>
                                                             <FormGroup inline>
                                                                 <Link to={URL_ADMIN_LIST_USER}>
                                                                     <button type="button" className="btn btn-primary">
@@ -222,6 +224,7 @@ class UserManager extends Component<Props, State> {
                                                                 </Link>{" "}
                                                                 &#160;
                                                             </FormGroup>
+                                                            &#160;
                                                         </Col>
                                                         <Col md={1}>
                                                             <button type="submit" className="btn btn-primary">

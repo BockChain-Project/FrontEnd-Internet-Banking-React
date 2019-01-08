@@ -16,7 +16,8 @@ import { actFetchAccountsRequest } from "./../../actions/client/account";
 type Props = {
     location: Object,
     clientActions: Object,
-    accounts: Object
+    accounts: Object,
+    closeAccount: Object
 };
 
 type State = {
@@ -26,15 +27,21 @@ type State = {
 class ClientAccountCloseContainer extends Component<Props, State> {
     componentWillMount = () => {
         this.props.clientActions.actFetchAccountsRequest();
+        const { state } = this.props.location;
+        console.log(state);
+        this.props.clientActions.eGetAccountClose(state.id);
     };
     componentDidMount() {}
     render() {
-        const { clientActions, accounts } = this.props;
+        const { clientActions, accounts, closeAccount } = this.props;
         const { state } = this.props.location;
 
-        if (!accounts || !state) return "";
-        // console.log(accounts);
-        // console.log(state);
+        if (!accounts || !state || !closeAccount) return "";
+        console.log(closeAccount);
+        if (accounts.length === 1) {
+            alert("You can not close your only account");
+            return "";
+        }
         accounts.map((item, index) => {
             const { account_number } = state;
             if (item.account_number === account_number) {
@@ -45,7 +52,7 @@ class ClientAccountCloseContainer extends Component<Props, State> {
         return (
             <Row>
                 <Col>
-                    <ClientAccountClose clientActions={clientActions} accounts={accounts} state={state} />
+                    <ClientAccountClose clientActions={clientActions} closeAccount={closeAccount} accounts={accounts} state={state} />
                 </Col>
             </Row>
         );
@@ -53,10 +60,11 @@ class ClientAccountCloseContainer extends Component<Props, State> {
 }
 
 const mapStateToProps = state => {
-    const { clients, accounts, userInfo } = state.clientReducer;
+    const { clients, accounts, userInfo, closeAccount } = state.clientReducer;
     return {
         clients,
         accounts,
+        closeAccount,
         userInfo
     };
 };

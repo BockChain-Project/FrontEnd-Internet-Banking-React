@@ -34,7 +34,7 @@ class UserAddAccount extends Component<Props, State> {
                                 <li>
                                     <a href="/">Home</a>
                                 </li>
-                                <li className="active">User List</li>
+                                <li className="active">User Add Account</li>
                             </ul>
                         </div>
                     </div>
@@ -46,7 +46,7 @@ class UserAddAccount extends Component<Props, State> {
                                 <div className="col-xs-12 col-sm-12 col-md-3">
                                     <h2 className="text-center pull-left" style={{ paddingLeft: "30px" }}>
                                         {" "}
-                                        <span className="glyphicon glyphicon-list-alt" /> &#160;Details{" "}
+                                        {/* <span className="glyphicon glyphicon-list-alt" /> &#160;Details{" "} */}
                                     </h2>
                                 </div>
                                 <div className="col-xs-9 col-sm-9 col-md-9">
@@ -58,7 +58,7 @@ class UserAddAccount extends Component<Props, State> {
                                 </div>
                             </div>
                         </div>
-                        <div className="panel-body table-responsive">
+                        {/* <div className="panel-body table-responsive">
                             <table className="table table-hover">
                                 <thead>
                                     <tr>
@@ -69,7 +69,7 @@ class UserAddAccount extends Component<Props, State> {
                                 </thead>
                                 <tbody>{this.showUsers(users)}</tbody>
                             </table>
-                        </div>
+                        </div> */}
                         <div className="panel-footer">
                             <div className="row">
                                 <div className="col-lg-12">

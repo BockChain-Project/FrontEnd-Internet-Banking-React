@@ -38,3 +38,36 @@ export const getUserAccountInfor = (account_number: string) => (dispatch: any) =
             throw err;
         });
 };
+
+// const deleteAccount = () => ({
+//     type: CLIENT_ACTIONS.USER_ACCOUNT_INFOR,
+//     userInfo
+// });
+
+export const eDeleteAccount = (id: any) => (dispatch: any) => {
+    Api.delete(`${API_URL}${API_USER_ACCOUNT_INFOR}/${id}`)
+        .then(res => {
+            console.log(res);
+            return res;
+        })
+        .catch(err => {
+            throw err;
+        });
+};
+
+const getAccountClose = (account: any) => ({
+    type: CLIENT_ACTIONS.CLIENT_ACCOUNT_CLOSE,
+    account
+});
+
+export const eGetAccountClose = (id: any) => (dispatch: any) => {
+    Api.get(`${API_URL}${API_USER_ACCOUNT_GET}/${id}`)
+        .then(res => {
+            console.log(res);
+            dispatch(getAccountClose(res));
+            return res;
+        })
+        .catch(err => {
+            throw err;
+        });
+};

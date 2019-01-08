@@ -13,7 +13,6 @@ import UserAddAccount from "../../components/admin/UserAddAccount";
 import * as UserActions from "./../../actions/admin/UserActions";
 
 type Props = {
-    clients: Array,
     userActions: Object,
     users: Object,
     location: Object,
@@ -30,13 +29,13 @@ class UserAddAccountContainer extends Component<Props, State> {
     };
     componentDidMount() {}
     render() {
-        const { clients, userActions, users } = this.props;
+        const { userActions, users } = this.props;
         const { user } = qs.parse(this.props.location.search);
         if (!users) return "";
         return (
             <Row>
                 <Col>
-                    <UserAddAccount clients={clients} userActions={userActions} users={users} />
+                    <UserAddAccount userActions={userActions} users={users} />
                 </Col>
             </Row>
         );
